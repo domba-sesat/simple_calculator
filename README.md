@@ -1,2 +1,2 @@
 # simple_calculator
-kalkulkator yang hanya bisa mengeksekusi 2 nilai
+kalkulator hanya bisa mengeksekusi 2 input yang berurutan, tanpa mengikuti aturan kabataku
