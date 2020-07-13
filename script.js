@@ -60,10 +60,12 @@ operators.forEach((operator)=>{
 const inputOperator = (operator)=>{
     if(calculationOperator===''){
         prevNumber=currentNumber;
+        console.log('llo');
     }else if(calculationOperator!=='' && prevNumber!=='' && currentNumber!==''){
         calculate();
         prevNumber=currentNumber;
         updateValue(currentNumber);
+        console.log('qer');
     };
     calculationOperator=operator;
     currentNumber='0';
@@ -87,17 +89,23 @@ const calculate = ()=>{
     switch(calculationOperator){
         case "+":
             result= (parseFloat(prevNumber)*10 + parseFloat(currentNumber)*10)/10;
+            console.log('tambah');
             break;
         case "-":
             result= (prevNumber*10 - currentNumber*10)/10;
+            console.log('kurang');
             break;
         case "*":
             result = (prevNumber*10 * currentNumber*10)/100;
+            console.log('kali');
             break;
         case "/":
             result = prevNumber / currentNumber;
+            console.log('bagi');
             break;
         default:
+            console.log('');
+            result = currentNumber;
             break;
     };
     currentNumber = result;
@@ -132,8 +140,14 @@ const inputDecimal = (dot)=>{
 const percentage= document.querySelector('.percentage');
 
 percentage.addEventListener('click', ()=>{
-    if(currentNumber!==''){
+    if(prevNumber===''){
         currentNumber = currentNumber/100;
+        console.log('lape');
+    }else if(calculationOperator!==''){
+        currentNumber = prevNumber/100;
+        console.log('pale');
+        prevNumber='';
+        calculationOperator='';
     };
     updateValue(currentNumber);
 });
