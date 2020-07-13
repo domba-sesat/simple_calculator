@@ -60,6 +60,10 @@ operators.forEach((operator)=>{
 const inputOperator = (operator)=>{
     if(calculationOperator===''){
         prevNumber=currentNumber;
+    }else if(calculationOperator!=='' && prevNumber!=='' && currentNumber!==''){
+        calculate();
+        prevNumber=currentNumber;
+        updateValue(currentNumber);
     };
     calculationOperator=operator;
     currentNumber='0';
@@ -69,7 +73,11 @@ const inputOperator = (operator)=>{
 const equalSign= document.querySelector('.equal-sign');
 
 equalSign.addEventListener("click",()=>{
-    calculate();
+    if(currentNumber!==''){
+        calculate()
+    } else{
+        currentNumber=prevNumber;
+    };
     updateValue(currentNumber);
     updateOperating(calculationOperator);
 });
@@ -78,13 +86,13 @@ const calculate = ()=>{
     let result = '';
     switch(calculationOperator){
         case "+":
-            result= parseFloat(prevNumber) + parseFloat(currentNumber);
+            result= (parseFloat(prevNumber)*10 + parseFloat(currentNumber)*10)/10;
             break;
         case "-":
-            result= prevNumber - currentNumber;
+            result= (prevNumber*10 - currentNumber*10)/10;
             break;
         case "*":
-            result = prevNumber * currentNumber;
+            result = (prevNumber*10 * currentNumber*10)/100;
             break;
         case "/":
             result = prevNumber / currentNumber;
@@ -120,3 +128,12 @@ decimal.addEventListener('click', (event)=>{
 const inputDecimal = (dot)=>{
     currentNumber += dot;
 };
+
+const percentage= document.querySelector('.percentage');
+
+percentage.addEventListener('click', ()=>{
+    if(currentNumber!==''){
+        currentNumber = currentNumber/100;
+    };
+    updateValue(currentNumber);
+});
